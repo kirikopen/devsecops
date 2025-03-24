@@ -3,27 +3,37 @@ name: Deploy to Railway
 on:
   push:
     branches:
-      - main
+      - main  # Workflow ini akan dijalankan saat ada push ke branch 'main'
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest  # Menjalankan pekerjaan di mesin Ubuntu terbaru
     
     steps:
+      # Langkah 1: Checkout kode dari repository
       - name: Checkout code
         uses: actions/checkout@v2
 
+      # Langkah 2: Setup Node.js versi 16
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
           node-version: '16'
 
+      # Langkah 3: Install Railway CLI via NPM
       - name: Install Railway CLI
-        run: |
-          curl -sSL https://railway.app/cli.sh | bash
-          export PATH="$PATH:$HOME/.railway/bin"
+        run: npm install -g railway
 
+      # Langkah 4: Install dependencies
+      - name: Install dependencies
+        run: npm install
+
+      # Langkah 5: Build application 
+      - name: Build application
+        run: npm run build  # Pastikan perintah build ada di script npm kamu
+
+      # Langkah 6: Deploy ke Railway
       - name: Deploy to Railway
         run: railway up --environment production
         env:
-          RAILWAY_API_KEY: ${{ secrets.RAILWAY_API_KEY }}
+          RAILWAY_API_KEY: ${{ secrets.RAILWAY_API_KEY }}  # Menggunakan API Key dari Secrets GitHub
