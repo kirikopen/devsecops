@@ -22,7 +22,7 @@ jobs:
 
       # Langkah 3: Install Railway CLI via NPM
       - name: Install Railway CLI
-        run: npm install -g railway
+        run: npm install -g @railway/cli
 
       # Langkah 4: Install dependencies
       - name: Install dependencies
