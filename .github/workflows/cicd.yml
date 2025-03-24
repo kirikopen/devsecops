@@ -20,10 +20,10 @@ jobs:
 
       - name: Install Railway CLI
         run: |
-          curl -sSL https://railway.app/cli.sh | sh
+          curl -sSL https://railway.app/cli.sh | bash
           export PATH="$PATH:$HOME/.railway/bin"
 
       - name: Deploy to Railway
         run: railway up --environment production
         env:
-          RAILWAY_API_KEY: ${{ secrets.RAILWAY_API_KEY }}  
+          RAILWAY_API_KEY: ${{ secrets.RAILWAY_API_KEY }}
