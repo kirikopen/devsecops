@@ -1,16 +1,20 @@
-{
-  "name": "devsecops-project",
+  "name": "devsecops",
   "version": "1.0.0",
-  "description": "Proyek DevSecOps",
+  "description": "heloo, this is our repository for devsecops \r \"Menambahkan informasi baru\"",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "build": "npm install && npm run build"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "dependencies": {
-    "express": "^4.18.2"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kirikopen/devsecops.git"
   },
-  "devDependencies": {},
+  "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kirikopen/devsecops/issues"
+  },
+  "homepage": "https://github.com/kirikopen/devsecops#readme"
 }
+
