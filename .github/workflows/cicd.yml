@@ -14,6 +14,9 @@ jobs:
       - name: Checkout kode
         uses: actions/checkout@v2
 
+      - name: List directory contents
+        run: ls -al  # Menampilkan isi direktori untuk memastikan file-file yang diperlukan ada
+
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
