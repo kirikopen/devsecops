@@ -22,7 +22,8 @@ jobs:
           node-version: '16'
 
       - name: Install Dependencies
-        run: npm install
+        run: cd client && npm install
+
 
       - name: Run Linter
         run: npm run lint
