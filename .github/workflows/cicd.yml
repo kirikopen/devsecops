@@ -22,8 +22,7 @@ jobs:
           node-version: '16'
 
       - name: Install Dependencies
-        run: cd client && npm install
-
+        run: npm install  # Tidak perlu cd karena package.json sudah di root
 
       - name: Run Linter
         run: npm run lint
