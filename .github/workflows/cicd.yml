@@ -15,10 +15,10 @@ jobs:
         uses: actions/checkout@v2
 
       # Langkah 2: Setup Node.js versi 16
-        - name: Set up Node.js
-          uses: actions/setup-node@v2
-          with:
-            node-version: '16'
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
 
       # Langkah 3: Install Railway CLI via NPM
       - name: Install Railway CLI
@@ -32,14 +32,15 @@ jobs:
       - name: Build application
         run: npm run build  # Pastikan perintah build ada di script npm kamu
 
-      # Langkah 6: Set Railway API Key Environment Variable
+      # Langkah 6: Set Railway API Key sebagai environment variable
       - name: Set Railway API Key
         run: echo "RAILWAY_API_KEY=${{ secrets.RAILWAY_API_KEY }}" >> $GITHUB_ENV
 
-      # Langkah 7: Login ke Railway CLI
+      # Langkah 7: Login ke Railway CLI menggunakan API Key
       - name: Railway login
-        run: railway login --api-key ${{ secrets.RAILWAY_API_KEY }}
-
+        run: |
+          echo "$RAILWAY_API_KEY" | railway login --api-key
+          
       # Langkah 8: Deploy ke Railway
       - name: Deploy to Railway
         run: railway up --environment production
