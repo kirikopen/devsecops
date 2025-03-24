@@ -32,9 +32,9 @@ jobs:
       - name: Build application
         run: npm run build  # Pastikan perintah build ada di script npm kamu
 
-      # Langkah 6: Login ke Railway menggunakan API Key
-      - name: Login to Railway
-        run: railway login --api-key ${{ secrets.RAILWAY_API_KEY }}
+      # Langkah 6: Set Railway API Key Environment Variable
+      - name: Set Railway API Key
+        run: echo "RAILWAY_API_KEY=${{ secrets.RAILWAY_API_KEY }}" >> $GITHUB_ENV
 
       # Langkah 7: Deploy ke Railway
       - name: Deploy to Railway
