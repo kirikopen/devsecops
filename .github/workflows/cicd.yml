@@ -1,58 +1,32 @@
 name: CI/CD Pipeline
-
-on:
+on: 
   push:
     branches:
       - main
-      - develop
-  pull_request:
-    branches:
-      - develop
+      - feature-branch
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - name: Checkout kode
+        uses: actions/checkout@v2
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
         with:
-          node-version: '18'
-
+          node-version: '14' 
+          
       - name: Install dependencies
         run: npm install
 
-      - name: Run unit tests
-        run: npm test
-
-      - name: Build application
+      - name: Build aplikasi
         run: npm run build
 
-      - name: Upload build artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: build
-          path: dist/
-
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Download build artifacts
-        uses: actions/download-artifact@v4
-        with:
-          name: build
-          path: dist/
-
       - name: Deploy to Railway
-        run: |
-          curl -fsSL cli.railway.app | sh
-          railway login --token ${{ secrets.railway_token }}
-          railway up
+        run: railway up --environment production
+        env:
+          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}  
+      - name: Run tests
+        run: npm test
