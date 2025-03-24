@@ -1,6 +1,7 @@
+{
   "name": "devsecops",
   "version": "1.0.0",
-  "description": "heloo, this is our repository for devsecops \r \"Menambahkan informasi baru\"",
+  "description": "hello, this is our repository for devsecops. Adding new information.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -17,4 +18,3 @@
   },
   "homepage": "https://github.com/kirikopen/devsecops#readme"
 }
-
