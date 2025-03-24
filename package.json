@@ -1,0 +1,20 @@
+{
+  "name": "devsecops",
+  "version": "1.0.0",
+  "description": "heloo, this is our repository for devsecops \r \"Menambahkan informasi baru\"",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kirikopen/devsecops.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kirikopen/devsecops/issues"
+  },
+  "homepage": "https://github.com/kirikopen/devsecops#readme"
+}
