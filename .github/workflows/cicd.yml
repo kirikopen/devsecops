@@ -8,7 +8,7 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest  # Menjalankan pekerjaan di mesin Ubuntu terbaru
-    
+
     steps:
       # Langkah 1: Checkout kode dari repository
       - name: Checkout code
@@ -28,11 +28,15 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      # Langkah 5: Build application 
+      # Langkah 5: Build application (Jika diperlukan)
       - name: Build application
         run: npm run build  # Pastikan perintah build ada di script npm kamu
 
-      # Langkah 6: Deploy ke Railway
+      # Langkah 6: Login ke Railway menggunakan API Key
+      - name: Login to Railway
+        run: railway login --api-key ${{ secrets.RAILWAY_API_KEY }}
+
+      # Langkah 7: Deploy ke Railway
       - name: Deploy to Railway
         run: railway up --environment production
         env:
