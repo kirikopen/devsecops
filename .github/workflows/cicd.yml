@@ -1,34 +1,29 @@
-name: CI/CD Pipeline
+name: Deploy to Railway
 
-on: 
+on:
   push:
     branches:
       - main
-      - feature-branch
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
-
+    
     steps:
-      - name: Checkout kode
+      - name: Checkout code
         uses: actions/checkout@v2
 
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '14' 
-          
-      - name: Install dependencies
-        run: npm install
+          node-version: '16'
 
-      - name: Build aplikasi
-        run: npm run build
+      - name: Install Railway CLI
+        run: |
+          curl -sSL https://railway.app/cli.sh | sh
+          export PATH="$PATH:$HOME/.railway/bin"
 
       - name: Deploy to Railway
         run: railway up --environment production
         env:
-          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}  
-
-      - name: Run tests
-        run: npm test
+          RAILWAY_API_KEY: ${{ secrets.RAILWAY_API_KEY }}  
