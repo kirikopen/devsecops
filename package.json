@@ -1,14 +1,15 @@
 {
   "name": "devsecops",
   "version": "1.0.0",
-  "description": "heloo, this is our repository for devsecops \r \"Menambahkan informasi baru\"",
+  "description": "Hello, this is our repository for DevSecOps",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "echo \"🚀 Build process started...\" && timeout /t 2 && echo \"✅ Build process completed!\""
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kirikopen/devsecops.git"
+    "url": "https://github.com/kirikopen/devsecops.git"
   },
   "keywords": [],
   "author": "",
