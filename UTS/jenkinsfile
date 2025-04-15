@@ -1,0 +1,46 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Install') {
+            steps {
+                echo 'Installing dependencies...'
+                sh 'npm install'
+            }
+        }
+
+        stage('Test') {
+            steps {
+                echo 'Running tests...'
+                sh 'npm test'
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                echo 'Deploying to local server via SSH...'
+
+                // Menghasilkan SSH key jika belum ada
+                sh '''
+                    if [ ! -f ~/.ssh/id_rsa ]; then
+                        echo "Generating SSH key..."
+                        ssh-keygen -t rsa -b 4096 -f ~/.ssh/id_rsa -N ""
+                    fi
+                '''
+                
+                // Menyalin kunci publik ke server
+                sh '''
+                    echo "Copying SSH key to server..."
+                    ssh-copy-id -i ~/.ssh/id_rsa.pub "Nadia'\''s"@192.168.1.100
+                '''
+                
+                // Salin semua file ke server lokal
+                sh '''
+                    echo "Copying files to server..."
+                    ssh "Nadia'\''s"@192.168.1.100 "mkdir -p /var/www/devsecops"
+                    scp -r * "Nadia'\''s"@192.168.1.100:/var/www/devsecops/
+                '''
+            }
+        }
+    }
+}
