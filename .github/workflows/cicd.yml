@@ -1,0 +1,45 @@
+name: Deploy to Railway
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout code from the repository
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      # Step 2: Set up Node.js version 16
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+
+      # Step 3: Install Railway CLI via NPM
+      - name: Install Railway CLI
+        run: npm install -g @railway/cli
+
+      # Step 4: Install dependencies
+      - name: Install dependencies
+        run: npm install
+
+      # Step 5: Build application
+      - name: Build application
+        run: npm run build
+
+      # Step 6: Set Railway API Key Environment Variable
+      - name: Set Railway API Key
+        run: echo "RAILWAY_API_KEY=${{ secrets.RAILWAY_API_KEY }}" >> $GITHUB_ENV
+
+      # Step 7: Login to Railway CLI
+      - name: Railway login
+        run: railway login
+
+      # Step 8: Deploy to Railway
+      - name: Deploy to Railway
+        run: railway up --environment production
