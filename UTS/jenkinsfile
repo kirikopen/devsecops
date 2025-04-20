@@ -18,12 +18,12 @@ pipeline {
 
         stage('Deploy') {
             steps {
-                echo 'Deploying to local server via SCP...'
+                echo 'Deploying to server...'
 
-                // Menjalankan perintah SCP dengan Windows-compatible
                 bat '''
                     ssh gojoganteng@192.168.1.119 "mkdir -p /var/www/devsecops"
-                    scp -r * gojoganteng@192.168.1.119:/var/www/devsecops/
+                    scp -r UTS/* gojoganteng@192.168.1.119:/var/www/devsecops/
+                    ssh gojoganteng@192.168.1.119 "pm2 restart /var/www/devsecops/app.js || pm2 start /var/www/devsecops/app.js"
                 '''
             }
         }
