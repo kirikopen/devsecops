@@ -22,8 +22,8 @@ pipeline {
 
                 // Menjalankan perintah SCP dengan Windows-compatible
                 bat '''
-                    ssh gojoganteng@192.168.1.100 "mkdir -p /var/www/devsecops"
-                    scp -r * gojoganteng@192.168.1.100:/var/www/devsecops/
+                    ssh gojoganteng@192.168.1.119 "mkdir -p /var/www/devsecops"
+                    scp -r * gojoganteng@192.168.1.119:/var/www/devsecops/
                 '''
             }
         }
